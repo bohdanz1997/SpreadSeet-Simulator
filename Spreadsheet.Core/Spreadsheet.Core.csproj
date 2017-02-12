@@ -42,19 +42,55 @@
   <ItemGroup>
     <Compile Include="Cells\Cell.cs" />
     <Compile Include="Cells\CellAddress.cs" />
+    <Compile Include="Cells\Expressions\BinaryExpression.cs" />
+    <Compile Include="Cells\Expressions\CellRefereceExpression.cs" />
+    <Compile Include="Cells\Expressions\ConstantExpression.cs" />
     <Compile Include="Cells\Expressions\IExpression.cs" />
-    <Compile Include="Parsers\ISpreadsheetParser.cs" />
+    <Compile Include="Cells\Expressions\UnaryExpression.cs" />
+    <Compile Include="Exceptions\CircularCellRefereceException.cs" />
+    <Compile Include="Exceptions\ExpressionEvaluationException.cs" />
+    <Compile Include="Exceptions\ExpressionParsingException.cs" />
+    <Compile Include="Exceptions\InvalidCellAdressException.cs" />
+    <Compile Include="Exceptions\SheatReadingException.cs" />
+    <Compile Include="Exceptions\SheetException.cs" />
+    <Compile Include="ProcessingStrategies\IProcessingStrategy.cs" />
+    <Compile Include="ProcessingStrategies\ParallelProcessingStrategy.cs" />
+    <Compile Include="ProcessingStrategies\SimpleProcessingStrategy.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SheetProcessingResult.cs" />
+    <Compile Include="SheetReader.cs" />
+    <Compile Include="SheetWriter.cs" />
+    <Compile Include="Validators\ISheetValidator.cs" />
+    <Compile Include="Parsers\ISheetParser.cs" />
     <Compile Include="Parsers\Operators\IOperator.cs" />
     <Compile Include="Parsers\Operators\Operator.cs" />
-    <Compile Include="Parsers\Operators\OperatorManager.cs" />
-    <Compile Include="Parsers\Tokenizers\ISpreadsheetTokenizer.cs" />
+    <Compile Include="Parsers\Operators\OperatorsFactory.cs" />
+    <Compile Include="Parsers\SheetStreamParser.cs" />
+    <Compile Include="Parsers\Tokenizers\ISheetTokenizer.cs" />
+    <Compile Include="Parsers\Tokenizers\Readers\AbstractReaderWithPeekSupport.cs" />
+    <Compile Include="Parsers\Tokenizers\Readers\StreamReaderWithPeekSupport.cs" />
+    <Compile Include="Parsers\Tokenizers\SheetStreamTokenizer.cs" />
     <Compile Include="Parsers\Tokenizers\Token.cs" />
     <Compile Include="Parsers\Tokenizers\TokenType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpreadsheetProcessor.cs" />
+    <Compile Include="Validators\RecursionDetectionValidator.cs" />
+    <Compile Include="Sheet.cs" />
+    <Compile Include="SheetProcessor.cs" />
+    <Compile Include="Utils\CellAddressConverter.cs" />
+    <Compile Include="Utils\ObjectPool.cs" />
+    <Compile Include="Utils\PooledHashSet.cs" />
+    <Compile Include="Utils\TextVariables.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Parsers\Tokenizers\Readers\" />
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

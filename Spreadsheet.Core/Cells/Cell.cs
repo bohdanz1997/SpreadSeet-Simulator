@@ -1,13 +1,9 @@
 ﻿using Spreadsheet.Core.Cells.Expressions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Spreadsheet.Core.Cells
 {
-    class Cell
+    public class Cell
     {
         public CellAddress Address { get; }
         
@@ -19,7 +15,7 @@ namespace Spreadsheet.Core.Cells
             Expression = expression;
         }
 
-        public object Evaluate(SpreadsheetProcessor processor)
+        public object Evaluate(SheetProcessor processor)
         {
             try
             {
@@ -27,7 +23,7 @@ namespace Spreadsheet.Core.Cells
             }
             catch (Exception exception)
             {
-                throw;
+                throw SheetException.AddCellAddressToErrorStack(new ExpressionEvaluationException(exception.Message, exception), Address);
             }
         }
 

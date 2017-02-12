@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Spreadsheet.Core.Parsers.Operators
 {
@@ -33,8 +29,7 @@ namespace Spreadsheet.Core.Parsers.Operators
             {
                 return binaryOperation(Cast(left), Cast(right));
             }
-            //throw
-            throw new Exception();
+            throw new ExpressionEvaluationException(string.Format(Resources.BinaryOperationNotSupported, OperatorCharacter));
         }
 
         public object UnaryOperation(object value)
@@ -43,20 +38,18 @@ namespace Spreadsheet.Core.Parsers.Operators
             {
                 return unaryOperation(Cast(value));
             }
-            //throw
-            throw new Exception();
+            throw new ExpressionEvaluationException(string.Format(Resources.UnaryOperationNotSupported, OperatorCharacter));
         }
 
         private T Cast(object value)
         {
             if (typeof(T) != value?.GetType())
             {
-                //trow
+                throw new ExpressionEvaluationException(string.Format(Resources.WrongTypeError, typeof(T), value?.GetType()));
             }
             return (T)value;
         }
 
-        public override string ToString() => 
-            OperatorCharacter.ToString();
+        public override string ToString() => OperatorCharacter.ToString();
     }
 }
