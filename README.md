@@ -1,2 +1,2 @@
-# SpreadSeet-Simulator
+# SpreadSeet-Proccessor
 # Simple OOP SpreadSeet-Simulator
